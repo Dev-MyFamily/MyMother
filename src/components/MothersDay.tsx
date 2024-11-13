@@ -4,7 +4,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
 
 const MothersDay = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const data = Array.from({ length: 50 }, (_, i) => ({
@@ -29,11 +29,11 @@ const MothersDay = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file));
-    }
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+     const file = e.target.files?.[0];
+     if (file) {
+       setSelectedImage(URL.createObjectURL(file));
+     }
   };
 
   return (
